@@ -1,0 +1,6 @@
+customer_id,first_name,last_name,email,age,registration_date
+1001,John,Doe,john.doe@example.com,32,2023-01-15
+1002,Jane,Smith,jane.smith@example.com,28,2023-02-20
+1003,Robert,Johnson,robert.johnson@example.com,45,2023-03-10
+1004,Emily,Brown,emily.brown@example.com,35,2023-04-05
+1005,Michael,Davis,michael.davis@example.com,52,2023-05-12

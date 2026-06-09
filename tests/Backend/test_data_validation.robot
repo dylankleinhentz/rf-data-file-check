@@ -1,13 +1,11 @@
 *** Settings ***
-Documentation     Sample test suite for CSV data validation
-Library           Collections
-Library           OperatingSystem
-Resource          keywords/data_validation.robot
+Documentation       Sample test suite for CSV data validation
+
+Resource            ../../Resources/common.resource
 
 
 *** Variables ***
-${SAMPLE_DATA_DIR}    ${CURDIR}/data
-${CUSTOMER_CSV}       ${SAMPLE_DATA_DIR}/sample_customers.csv
+${CUSTOMER_CSV}     ${CURDIR}/../../Data/sample_customers.csv
 
 
 *** Test Cases ***

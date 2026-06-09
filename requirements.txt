@@ -1,3 +1,24 @@
-robotframework==7.0.1
-pandas==2.2.3
-openpyxl==3.10.10
+# We need setuptools to fix error ImportError: No module named REST since Python 3.12
+# https://stackoverflow.com/questions/7446187/no-module-named-pkg-resources
+# https://stackoverflow.com/questions/77364550/attributeerror-module-pkgutil-has-no-attribute-impimporter-did-you-mean
+# UserWarning: pkg_resources is deprecated and is slated for removal as early as 2025-11-30. pin to Setuptools<81.
+# pip install --upgrade -r requirements.txt
+setuptools<81                       
+robotcode[runner]
+robotframework<8                    # pin to <8 so that we properly migrate if there are breaking changes
+robotframework-robocop<7            # pin to <7 so that we properly migrate if there are breaking changes
+robotframework-databaselibrary<3
+robotframework-excellib             # haven't been updated since 2020
+robotframework-jsonlibrary          # haven't been updated since 2022
+robotframework-browser
+robotframework-browser[bb]          ## Allows to skip NodeJS installation and does not need to install the NodeJS dependencies, like Playwright and GRPC
+robotframework-requests             # use for PUT/POST requests with XML body or proxy support (requests python module)
+robotframework-sshlibrary
+RESTinstance                        # use for REST API requests with JSON or dictionary body (more widely used)
+psycopg[binary]                     # used module for setting up DB connection
+lxml
+xmltodict
+cryptography
+pyjwt                               # import jwt in util_file.py
+pandas
+

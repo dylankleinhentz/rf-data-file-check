@@ -1,61 +1,61 @@
 *** Settings ***
-Library    Collections
-Library    OperatingSystem
-Library    ../../../src/libraries/CSVDataValidator.py
+Documentation       This resource contains KW's which allows the tests to perform data file check actions
+
+Resource            ../common.resource
 
 
 *** Keywords ***
 Load CSV Data File
-    [Arguments]    ${file_path}
     [Documentation]    Load a CSV file for validation
+    [Arguments]    ${file_path}
     ${result}=    Load Csv File    ${file_path}
     Should Be True    ${result}    File could not be loaded: ${file_path}
 
 Validate Required Columns Exist
-    [Arguments]    @{columns}
     [Documentation]    Verify that required columns exist in the CSV
+    [Arguments]    @{columns}
     ${result}=    Validate Required Columns    ${columns}
     Should Be True    ${result}    Required column validation failed
 
 Validate Column Has Only Numeric Values
-    [Arguments]    ${column_name}
     [Documentation]    Verify all values in a column are numeric
+    [Arguments]    ${column_name}
     ${result}=    Validate Column Data Type    ${column_name}    numeric
     Should Be True    ${result}    Column contains non-numeric values: ${column_name}
 
 Validate Column Has Only String Values
-    [Arguments]    ${column_name}
     [Documentation]    Verify all values in a column are strings
+    [Arguments]    ${column_name}
     ${result}=    Validate Column Data Type    ${column_name}    string
     Should Be True    ${result}    Column contains invalid string values: ${column_name}
 
 Validate Column Values Are Unique
-    [Arguments]    ${column_name}
     [Documentation]    Verify all values in a column are unique
+    [Arguments]    ${column_name}
     ${result}=    Validate Unique Values    ${column_name}
     Should Be True    ${result}    Column contains duplicate values: ${column_name}
 
 Validate Column Values In Range
-    [Arguments]    ${column_name}    ${min_value}    ${max_value}
     [Documentation]    Verify numeric values fall within a specified range
+    [Arguments]    ${column_name}    ${min_value}    ${max_value}
     ${result}=    Validate Value Range    ${column_name}    ${min_value}    ${max_value}
     Should Be True    ${result}    Column values outside range: ${column_name}
 
 Validate Column Matches Pattern
-    [Arguments]    ${column_name}    ${pattern}
     [Documentation]    Verify all values match a regex pattern
+    [Arguments]    ${column_name}    ${pattern}
     ${result}=    Validate Pattern    ${column_name}    ${pattern}
     Should Be True    ${result}    Column values don't match pattern: ${column_name}
 
 Get CSV Row Count
     [Documentation]    Get the number of rows in the loaded CSV
     ${count}=    Get Row Count
-    [Return]    ${count}
+    RETURN    ${count}
 
 Get CSV Column Names
     [Documentation]    Get the list of column names from the CSV
     ${columns}=    Get Column Names
-    [Return]    ${columns}
+    RETURN    ${columns}
 
 Print Validation Errors
     [Documentation]    Print all validation errors to log
